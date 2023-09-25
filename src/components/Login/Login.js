@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { useHistory} from 'react-router-dom';
 import styles from './Login.module.css';
 import AuthContext from '../../store/auth-context';
@@ -8,9 +8,15 @@ import AuthContext from '../../store/auth-context';
 const Login = () => {
   const history = useHistory();
 
-  const emailInputRef = useRef();
-  const passwordInputRef = useRef();
-  const confirmPasswordInputRef = useRef();
+  const [loginForm, setLoginForm] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  })
+
+  // const emailInputRef = useRef();
+  // const passwordInputRef = useRef();
+  // const confirmPasswordInputRef = useRef();
   const [isLogin, setIsLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -21,15 +27,22 @@ const Login = () => {
     setIsLogin((prevState) => !prevState);
   };
 
+  const inputChangeHandler = (event) => {
+    const { name, value } = event.target;
+    setLoginForm({
+      ...loginForm,
+      [name]: value,
+    })
+  }
   
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    const enteredEmail = emailInputRef.current.value;
-    const enteredPassword = passwordInputRef.current.value;
+    const enteredEmail = loginForm.email;
+    const enteredPassword = loginForm.password;
 
     if(!isLogin){
-      const confirmEnteredPassword = confirmPasswordInputRef.current.value;
+      const confirmEnteredPassword = loginForm.confirmPassword;
 
     if(enteredPassword !== confirmEnteredPassword){
       alert("Password and Confirm password do not match");
@@ -87,13 +100,14 @@ const Login = () => {
       <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
       <form onSubmit={submitHandler}>
         <div className={styles.control}>
-          <input type='email' id='email' ref={emailInputRef} placeholder="Email" required />
+          <input type='email' id='email' name="email" onChange={inputChangeHandler} placeholder="Email" required />
         </div>
         <div className={styles.control}>
           <input
             type='password'
             id='password'
-            ref={passwordInputRef}
+            name='password'
+            onChange={inputChangeHandler}
             placeholder='Password'
             required
           />
@@ -102,7 +116,8 @@ const Login = () => {
           <input
             type='password'
             id='confirm-password'
-            ref={confirmPasswordInputRef}
+            name='confirm-password'
+            onChange={inputChangeHandler}
             placeholder='Confirm Password'
             required
           />

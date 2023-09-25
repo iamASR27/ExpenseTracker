@@ -1,0 +1,49 @@
+.form-container {
+    margin: 5.5rem auto;
+    max-width: 60rem;
+    box-shadow:  0px 2px 4px rgba(172, 30, 30, 0.322);
+    border-radius: 6px;
+    padding: 1rem;
+}
+
+.contact-details, .data{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem 1rem;
+}
+
+.contact-details button {
+    border-radius: 6px;
+    border: 0.5px solid red;
+    background-color: white;
+    color: red;
+    font-weight: 500;
+}
+.contact-details button:hover {
+    border: 1px solid rgb(184, 3, 3);
+    color: rgb(173, 4, 4);
+}
+
+.data input {
+    width: 30%;
+}
+
+.data label {
+    font-weight: 500;
+}
+
+.update {
+    margin: 1rem 1rem;
+}
+
+.update button {
+    background-color: slateblue;
+    color: white;
+    border-radius: 6px;
+    border: 0.5px solid rgb(52, 31, 184);
+}
+
+.update button:hover {
+    background-color: rgb(20, 8, 94);
+}
