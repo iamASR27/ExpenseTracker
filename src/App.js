@@ -5,6 +5,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 import AuthContext from "./store/auth-context";
 import UpdateProfilePage from "./components/Pages/UpdateProfilePage";
+import CheckProfile from "./components/Pages/CheckProfile";
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -13,6 +14,7 @@ function App() {
     { path: "/login", component: <Login /> },
     { path: "/home", component: <HomePage /> },
     { path: "/updateProfile", component: <UpdateProfilePage /> },
+    { path: "/checkProfile", component: <CheckProfile /> },
   ];
 
   return (

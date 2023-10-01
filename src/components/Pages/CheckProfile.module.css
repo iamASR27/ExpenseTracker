@@ -1,0 +1,20 @@
+.profile-container {
+    margin: 5.5rem auto;
+    max-width: 60rem;
+    box-shadow:  0px 2px 4px rgba(172, 30, 30, 0.322);
+    border-radius: 6px;
+    padding: 1rem;
+}
+
+.profile-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.profile-data b {
+    margin-bottom: 10px; 
+    margin-right: 1rem;
+}

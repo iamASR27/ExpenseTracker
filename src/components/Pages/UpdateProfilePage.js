@@ -5,7 +5,7 @@ import AuthContext from "../../store/auth-context";
 import styles from "./UpdateProfilePage.module.css";
 
 const UpdateProfilePage = () => {
-  const { token } = useContext(AuthContext);
+  const { token, setProfileLink } = useContext(AuthContext);
   const [profileData, setProfileData] = useState({
     fullname: "",
     photoURL: "",
@@ -15,7 +15,7 @@ const UpdateProfilePage = () => {
 
   const inputChangeHandler = (event) => {
     const { name, value } = event.target;
-    console.log(name, value)
+    // console.log(name, value)
     setProfileData({
       ...profileData,
       [name]: value,
@@ -36,7 +36,7 @@ const UpdateProfilePage = () => {
             idToken: token,
             displayName: profileData.fullname,
             photoUrl: profileData.photoURL,
-            deleteAttribute: ["DISPLAY_NAME", "PHOTO_URL"],
+            // deleteAttribute: ["DISPLAY_NAME", "PHOTO_URL"],  //["DISPLAY_NAME", "PHOTO_URL"]
             returnSecureToken: true,
           }),
           headers: {
@@ -56,10 +56,24 @@ const UpdateProfilePage = () => {
         fullname: "",
         photoURL: "",
       });
+     setProfileLink();
+
     } catch (error) {
       console.error("Error submitting form:", error.message);
     }
   };
+
+  // useEffect(() => {
+  //     try {
+  //       const data =  authCtx.getProfileData();
+  //       setProfileData({
+  //         fullname: data.displayName || "",
+  //         photoURL: data.photoUrl || "", 
+  //       });
+  //     } catch (error) {
+  //       console.error("Error fetching profile data:", error.message);
+  //     }
+  // }, [authCtx]);
 
   useEffect(() => {
     if (showSuccessMessage) {
@@ -82,8 +96,8 @@ const UpdateProfilePage = () => {
       <div className={styles.data}>
         <label htmlFor="fullname">Full Name: </label>
         <input type="text" id="fullname" name="fullname" onChange={inputChangeHandler} />
-        <label htmlFor="profile_photo">Profile Photo URL: </label>
-        <input type="url" id="profile_photo" name="photoURL" onChange={inputChangeHandler} />
+        <label htmlFor="photoURL">Profile Photo URL: </label>
+        <input type="url" id="photoURL" name="photoURL" onChange={inputChangeHandler} />
       </div>
       <div className={styles.update}>
         <button type="submit">Update</button>
