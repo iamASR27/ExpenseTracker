@@ -1,0 +1,32 @@
+.home {
+    padding: 1rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logout {
+    background-color: darkblue;
+    color: white;
+    border-radius: 6px;
+    border: 0.5px solid rgb(52, 31, 184);
+}
+
+
+.logout:hover {
+    background-color: rgb(114, 97, 212);
+}
+
+.verify {
+    margin-top: 1rem;
+    color: white;
+    background-color: darkblue;
+    border-radius: 4px;
+}
+
+.verify:hover {
+    background-color: rgb(103, 103, 212);
+}

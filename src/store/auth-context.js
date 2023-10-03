@@ -6,6 +6,7 @@ const AuthContext = React.createContext({
     profileLink: false,
     setProfileLink: () => {},
     login: (token) => {},
+    logout: () => {},
     getProfileData: async () => {},
 });
 
@@ -23,6 +24,11 @@ export const AuthContextProvider = ({ children }) => {
     const loginHandler = (token) => {
         setToken(token);
         localStorage.setItem("token", token);
+    };
+
+    const logoutHandler = () => {
+        setToken(null);
+        localStorage.removeItem("token");
     };
 
     const userIsLoggedIn = !!token;
@@ -48,30 +54,13 @@ export const AuthContextProvider = ({ children }) => {
         }
     };
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const data = await getUserProfileData();
-    //             const user = data.users[0];
-    //             const displayName = user.displayName;
-    //             const photoUrl = user.photoUrl;
-    //             if (displayName && photoUrl) {
-    //                 setProfileLink();
-    //             }
-    //         } catch (error) {
-    //             console.error("Error fetching profile data:", error.message);
-    //         }
-    //     };
-    
-    //     fetchData();
-    // }, [getUserProfileData, setProfileLink]);
-    
     const contextValue = {
         token: token,
         isLoggedIn: userIsLoggedIn,
         profileLink: profileLink,
         setProfileLink: profileLinkHandler,
         login: loginHandler,
+        logout: logoutHandler,
         getProfileData: getUserProfileData,
     }
 
