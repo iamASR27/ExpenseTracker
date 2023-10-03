@@ -47,3 +47,19 @@
 .update button:hover {
     background-color: rgb(20, 8, 94);
 }
+
+@media (max-width: 768px) {
+    .data{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0.5rem 1rem;
+    }
+    
+    .data input {
+        width: 60vw;
+        height: 1.5rem;
+        margin-top: 0.5rem;
+    }
+}

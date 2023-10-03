@@ -18,6 +18,16 @@
   .control {
     /* margin-bottom: 1rem; */
     margin-top: 1.5rem;
+    display: flex;
+  }
+  .control button {
+    background-color: #88888836;
+    color: rgb(85, 80, 80);
+    border: none;
+    border-radius: 4px;
+    margin-left: 0;
+    padding: 0.25rem;
+    border: 1px solid white;
   }
   
   /* .control label {
@@ -72,3 +82,5 @@
     background-color: transparent;
     color: black;
   }
+
+  

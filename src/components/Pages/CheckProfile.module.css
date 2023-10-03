@@ -1,9 +1,10 @@
 .profile-container {
     margin: 5.5rem auto;
-    max-width: 60rem;
+    width: 70rem;
     box-shadow:  0px 2px 4px rgba(172, 30, 30, 0.322);
     border-radius: 6px;
     padding: 1rem;
+    max-height: 60rem;
 }
 
 .profile-data {
@@ -17,4 +18,25 @@
 .profile-data b {
     margin-bottom: 10px; 
     margin-right: 1rem;
+}
+
+.update-button {
+    background-color: slateblue;
+    color: white;
+    border-radius: 6px;
+    border: 0.5px solid rgb(52, 31, 184);
+    margin-top: 1rem;
+}
+.update-button:hover {
+    background-color: rgb(20, 8, 94);
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        max-width: 70rem;
+        display: flex;
+        justify-self: center;
+        align-items: flex-start;
+        flex-direction: column;
+    }
 }

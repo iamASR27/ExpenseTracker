@@ -36,7 +36,7 @@ const UpdateProfilePage = () => {
             idToken: token,
             displayName: profileData.fullname,
             photoUrl: profileData.photoURL,
-            // deleteAttribute: ["DISPLAY_NAME", "PHOTO_URL"],  //["DISPLAY_NAME", "PHOTO_URL"]
+            // deleteAttribute: ["DISPLAY_NAME", "PHOTO_URL"],
             returnSecureToken: true,
           }),
           headers: {
@@ -58,22 +58,12 @@ const UpdateProfilePage = () => {
       });
      setProfileLink();
 
+
     } catch (error) {
       console.error("Error submitting form:", error.message);
     }
   };
 
-  // useEffect(() => {
-  //     try {
-  //       const data =  authCtx.getProfileData();
-  //       setProfileData({
-  //         fullname: data.displayName || "",
-  //         photoURL: data.photoUrl || "", 
-  //       });
-  //     } catch (error) {
-  //       console.error("Error fetching profile data:", error.message);
-  //     }
-  // }, [authCtx]);
 
   useEffect(() => {
     if (showSuccessMessage) {

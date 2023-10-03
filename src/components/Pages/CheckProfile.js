@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import styles from "./CheckProfile.module.css";
 
 const CheckProfile = () => {
-  const authCtx = useContext(AuthContext);
+  const { getProfileData } = useContext(AuthContext);
   const [profileData, setProfileData] = useState(null);
   const history = useHistory();
 
@@ -15,15 +15,16 @@ const CheckProfile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await authCtx.getProfileData();
+        const data = await getProfileData();
         setProfileData(data);
+        // authCtx.setProfileLink();
       } catch (error) {
         console.error("Error fetching profile data:", error.message);
       }
     };
 
     fetchData();
-  }, [authCtx]);
+  }, [getProfileData]);
 
   if (!profileData) {
     return <div>Loading...</div>;
