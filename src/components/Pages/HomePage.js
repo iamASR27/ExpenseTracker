@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
+import styles from "./HomePage.module.css";
 
 const HomePage = () => {
   const authCtx = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
-  console.log(authCtx.profileLink);
+  // console.log(authCtx.profileLink);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,12 +55,18 @@ const HomePage = () => {
     }
   };
 
+  const logoutButtonHandler = () => {
+    authCtx.logout();
+  }
+
   return (
     <>
-      <div>
+    <div className={styles.home}>
+      <div className={styles.header}>
         <h2>
           <i>Welcome to Expense Tracker</i>
         </h2>
+        <button className={styles.logout} onClick={logoutButtonHandler}>Logout</button>
       </div>
       {!authCtx.profileLink && (
         <div>
@@ -76,9 +83,10 @@ const HomePage = () => {
           </i>
         </div>
       )}
-      <button onClick={verifyEmailHandler}>
+      <button className={styles.verify} onClick={verifyEmailHandler}>
         <i>Click here verify your email-id</i>
       </button>
+      </div>
     </>
   );
 };
