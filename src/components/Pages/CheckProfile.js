@@ -27,7 +27,11 @@ const CheckProfile = () => {
   }, [getProfileData]);
 
   if (!profileData) {
-    return <div>Loading...</div>;
+    return (
+      <div className="spinner-container">
+        <div className="spinner"></div>
+      </div>
+    );
   }
 
   const user = profileData.users[0];

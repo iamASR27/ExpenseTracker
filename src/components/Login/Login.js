@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import styles from "./Login.module.css";
 import AuthContext from "../../store/auth-context";
 
@@ -144,6 +144,11 @@ const Login = () => {
             <button type="button" onClick={toggleConfirmPasswordVisibility}>
               {showPassword ? "hide" : "show"}
             </button>
+          </div>
+        )}
+         {isLogin && (
+          <div className={styles.actions}>
+            <Link to="/forgot-password">Forgot Password?</Link>
           </div>
         )}
         <div className={styles.actions}>

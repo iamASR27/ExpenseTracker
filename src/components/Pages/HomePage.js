@@ -31,9 +31,12 @@ const HomePage = () => {
   }, [authCtx]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="spinner-container">
+        <div className="spinner"></div>
+      </div>
+    );
   }
- 
 
   const verifyEmailHandler = async () => {
     try {

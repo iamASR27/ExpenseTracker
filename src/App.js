@@ -6,33 +6,22 @@ import "./App.css";
 import AuthContext from "./store/auth-context";
 import UpdateProfilePage from "./components/Pages/UpdateProfilePage";
 import CheckProfile from "./components/Pages/CheckProfile";
+import ForgotPassword from "./components/Login/ForgotPassword";
 
 function App() {
   const authCtx = useContext(AuthContext);
-  const routes = [
-    { path: "/", exact: true, component: <Redirect to="/login" /> },
-    { path: "/login", component: <Login /> },
-    { path: "/home", component: <HomePage /> },
-    { path: "/updateProfile", component: <UpdateProfilePage /> },
-    { path: "/checkProfile", component: <CheckProfile /> },
-  ];
+
+  
 
   return (
     <>
       <Switch>
-        {routes.map((route, index) => (
-          <Route
-            key={index}
-            path={route.path}
-            exact={route.exact}
-            render={() => {
-              if (!authCtx.isLoggedIn && route.path !== "/login") {
-                return <Redirect to="/login" />;
-              }
-              return route.component;
-            }}
-          />
-        ))}
+        <Route path="/login" component={Login} />
+        {authCtx.isLoggedIn && <Route path="/home" exact component={HomePage} />}
+        {authCtx.isLoggedIn && <Route path="/updateProfile" component={UpdateProfilePage} />}
+        {authCtx.isLoggedIn && <Route path="/checkProfile" component={CheckProfile} />}
+        <Route path="/forgot-password" component={ForgotPassword} />
+        <Redirect from="/" to="/login" />
       </Switch>
     </>
   );
