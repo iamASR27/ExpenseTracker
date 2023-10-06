@@ -2,8 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
 import styles from "./HomePage.module.css";
+import { useHistory } from "react-router-dom";
 
 const HomePage = () => {
+  const history = useHistory();
   const authCtx = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   // console.log(authCtx.profileLink);
@@ -62,6 +64,10 @@ const HomePage = () => {
     authCtx.logout();
   }
 
+  const manageExpenseHandler = () => {
+    history.replace("/expenses");
+  };
+
   return (
     <>
     <div className={styles.home}>
@@ -86,9 +92,12 @@ const HomePage = () => {
           </i>
         </div>
       )}
+      <div className={styles.home_buttons}>
       <button className={styles.verify} onClick={verifyEmailHandler}>
         <i>Click here verify your email-id</i>
       </button>
+      <button className={styles.expenses} onClick={manageExpenseHandler}><i>Manage your expenses</i></button>
+      </div>
       </div>
     </>
   );

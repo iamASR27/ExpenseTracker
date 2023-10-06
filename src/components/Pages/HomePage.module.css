@@ -17,7 +17,7 @@
 
 
 .logout:hover {
-    background-color: rgb(114, 97, 212);
+    background-color: rgb(43, 43, 211);;
 }
 
 .verify {
@@ -28,5 +28,23 @@
 }
 
 .verify:hover {
-    background-color: rgb(103, 103, 212);
+    background-color: rgb(43, 43, 211);;
+}
+
+.expenses {
+    margin-top: 1rem;
+    color: white;
+    background-color: darkblue;
+    border-radius: 4px;
+}
+
+.expenses:hover {
+    background-color: rgb(43, 43, 211);
+}
+
+.home_buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 }

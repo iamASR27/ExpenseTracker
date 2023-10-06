@@ -1,0 +1,54 @@
+.new-expense {
+  background: linear-gradient(to right, #2e3192, #1bffff);
+  padding: 1rem;
+  /* margin: 2rem auto; */
+  width: 100vw;
+  height: 100vh;
+  /* max-width: 95%; */
+  /* border-radius: 12px; */
+  text-align: center;
+  /* box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25); */
+}
+
+.new-expense button {
+  font: inherit;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  border: 0.5px solid white;
+  background: linear-gradient(to right, #3376b9, #0f8f8f);
+  color: white;
+  border-radius: 12px;
+  margin-right: 1rem;
+}
+
+.new-expense button:hover,
+.new-expense button:active {
+  background: linear-gradient(to right, #3b8ddf, #26cccc);
+  /* border-color: #3b72e9; */
+  border-color: white;
+}
+
+.new-expense button.alternative {
+  color: #220131;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.new-expense button.alternative:hover,
+.new-expense button.alternative:active {
+  background-color: #ddb3f8;
+}
+
+.list {
+  list-style-type: none;
+}
+.expenseList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+  background: #8cebeb;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  padding: 0.5rem;
+}

@@ -7,6 +7,7 @@ import AuthContext from "./store/auth-context";
 import UpdateProfilePage from "./components/Pages/UpdateProfilePage";
 import CheckProfile from "./components/Pages/CheckProfile";
 import ForgotPassword from "./components/Login/ForgotPassword";
+import NewExpense from "./components/NewExpense/NewExpense";
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -20,6 +21,7 @@ function App() {
         {authCtx.isLoggedIn && <Route path="/home" exact component={HomePage} />}
         {authCtx.isLoggedIn && <Route path="/updateProfile" component={UpdateProfilePage} />}
         {authCtx.isLoggedIn && <Route path="/checkProfile" component={CheckProfile} />}
+        {authCtx.isLoggedIn && <Route path="/expenses" component={NewExpense} />}
         <Route path="/forgot-password" component={ForgotPassword} />
         <Redirect from="/" to="/login" />
       </Switch>
