@@ -3,9 +3,10 @@ import ExpenseForm from "./ExpenseForm";
 import { useHistory } from "react-router-dom";
 import styles from "./NewExpense.module.css";
 
-const NewExpense = (props) => {
+const NewExpense = () => {
   const history = useHistory();
   const [expenses, setExpenses] = useState([]);
+  const [editedExpense, setEditedExpense] = useState(null);
 
   const saveExpenseDataHandler = async () => {
     console.log("fetch expenses")
@@ -60,18 +61,27 @@ const NewExpense = (props) => {
       }
 
       await saveExpenseDataHandler(); // Fetch updated expenses after removing one
+      console.log("Expense successfuly deleted")
     } catch (error) {
       console.error("Error removing expense:", error.message);
     }
   };
 
-  
+  const editExpenseHandler = (expense) => {
+    setEditedExpense(expense);
+  };
+
+  const clearEditedExpenseHandler = () => {
+    setEditedExpense(null);
+  };
 
   return (
     <div className={styles["new-expense"]}>
         <>
           <ExpenseForm
             onSaveExpenseData={saveExpenseDataHandler}
+            editedExpense={editedExpense}
+            onSaveChanges={clearEditedExpenseHandler}
             // onCancel={collapseFormHandler}
             onGoBack={goBackToHomeHandler}
           />
@@ -88,7 +98,10 @@ const NewExpense = (props) => {
                     <div><h4>{expense.category}</h4></div>
                     <div>{expense.description}</div>
                     <div>Rs. {expense.amount}</div>
-                    <button onClick={() => removeExpenseHandler(expense.id)}>Remove</button>
+                    <div>
+                    <button onClick={() => editExpenseHandler(expense)}>Edit</button>
+                    <button onClick={() => removeExpenseHandler(expense.id)}>Delete</button>
+                    </div>
                     </div>
                   </li>
                 ))}

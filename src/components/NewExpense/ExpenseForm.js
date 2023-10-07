@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./ExpenseForm.module.css";
 
 const ExpenseForm = (props) => {
@@ -8,6 +8,28 @@ const ExpenseForm = (props) => {
     date: "",
     category: "Food",
   });
+
+  useEffect(() => {
+    // If an editedExpense is provided, populate the form fields
+    if (props.editedExpense) {
+      const [day, month, year] = props.editedExpense.date.split('/');
+    const inputDate = new Date(`${year}-${month}-${day}`);
+
+    // Check if the input date is valid
+    if (isNaN(inputDate.getTime())) {
+      console.error('Invalid date:', props.editedExpense.date);
+      return;
+    }
+      // const formattedDate = new Date(props.editedExpense.date).toISOString().split('T')[0];
+      console.log(props.editedExpense.date)
+      setUserInput({
+        amount: props.editedExpense.amount,
+        description: props.editedExpense.description,
+        date: inputDate.toISOString().split('T')[0],
+        category: props.editedExpense.category,
+      });
+    }
+  }, [props.editedExpense]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -29,25 +51,44 @@ const ExpenseForm = (props) => {
     //console.log(expenseData);
 
     try {
-      const response = await fetch(
-        "https://expensetracker-1d4cf-default-rtdb.firebaseio.com/expensedata.json",
-        {
-          method: "POST",
-          body: JSON.stringify(expenseData),
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-          },
-        }
-      );
+      let response;
+      if(props.editedExpense){
+        response = await fetch(
+          `https://expensetracker-1d4cf-default-rtdb.firebaseio.com/expensedata/${props.editedExpense.id}.json`,
+          {
+            method: "PUT",
+            body: JSON.stringify(expenseData),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        
+      }else {
+        response = await fetch(
+          "https://expensetracker-1d4cf-default-rtdb.firebaseio.com/expensedata.json",
+          {
+            method: "POST",
+            body: JSON.stringify(expenseData),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+      }
+     
 
       if (!response.ok) {
-        throw new Error("Failed to add expense.");
+        throw new Error(
+          props.editedExpense
+            ? "Failed to edit expense."
+            : "Failed to add expense."
+        );
       }
       // const responseData = await response.json();
       // const expenseIdFromFirebase = responseData.name;
       // console.log(responseData);
-
+      props.onSaveChanges();
       props.onSaveExpenseData();
       console.log("add")
     } catch (error) {
@@ -115,7 +156,9 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className={styles["expense-submit"]}>
-        <button type="submit">Add Expense</button>
+      <button type="submit">
+          {props.editedExpense ? "Save Changes" : "Add Expense"}
+        </button>
         {/* <button type="button" onClick={props.onCancel}>Cancel</button> */}
         <button type="button" onClick={props.onGoBack}>
           Go back to homepage
