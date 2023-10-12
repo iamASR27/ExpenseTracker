@@ -10,18 +10,15 @@ const ExpenseForm = (props) => {
   });
 
   useEffect(() => {
-    // If an editedExpense is provided, populate the form fields
     if (props.editedExpense) {
       const [day, month, year] = props.editedExpense.date.split('/');
     const inputDate = new Date(`${year}-${month}-${day}`);
 
-    // Check if the input date is valid
     if (isNaN(inputDate.getTime())) {
       console.error('Invalid date:', props.editedExpense.date);
       return;
     }
-      // const formattedDate = new Date(props.editedExpense.date).toISOString().split('T')[0];
-      console.log(props.editedExpense.date)
+    //  console.log(props.editedExpense.date)
       setUserInput({
         amount: props.editedExpense.amount,
         description: props.editedExpense.description,

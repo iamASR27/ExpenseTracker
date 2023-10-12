@@ -37,3 +37,26 @@
   margin-left: 2rem;
   font-weight: 600;
 }
+
+@media (max-width: 600px) {
+  .expense-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    text-align: left;
+    margin: 0.5rem;
+  }
+  .expense-form-input input {
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 15rem;
+    max-width: 100%;
+  }
+  .expense-submit {
+    text-align: left;
+    margin-left: 0.5rem;
+    font-weight: 600;
+  }
+}

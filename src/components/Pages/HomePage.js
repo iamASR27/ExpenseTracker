@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
 import styles from "./HomePage.module.css";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../../store/auth";
 
 const HomePage = () => {
   const history = useHistory();
@@ -10,10 +12,14 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
   // console.log(authCtx.profileLink);
 
+  const token = useSelector(state => state.auth.token);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await authCtx.getProfileData();
+        // console.log(data)
         const user = data.users[0];
         const displayName = user.displayName;
         const photoUrl = user.photoUrl;
@@ -48,7 +54,7 @@ const HomePage = () => {
           method: "POST",
           body: JSON.stringify({
             requestType: "VERIFY_EMAIL",
-            idToken: authCtx.token,
+            idToken: token,
           }),
           headers: {
             "Content-Type": "application/json",
@@ -61,12 +67,17 @@ const HomePage = () => {
   };
 
   const logoutButtonHandler = () => {
-    authCtx.logout();
+    // authCtx.logout();
+    dispatch(authActions.logout());
   }
 
   const manageExpenseHandler = () => {
     history.replace("/expenses");
   };
+
+  const profileHandler = () => {
+    history.replace("/checkProfile");
+  }
 
   return (
     <>
@@ -86,11 +97,11 @@ const HomePage = () => {
         </div>
       )}
       {authCtx.profileLink && (
-        <div>
+        <button className={styles.profileButton} onClick={profileHandler}>
           <i>
-            <Link to="/checkProfile">Click here </Link>to check your profile
+            Click here to check your profile
           </i>
-        </div>
+        </button>
       )}
       <div className={styles.home_buttons}>
       <button className={styles.verify} onClick={verifyEmailHandler}>

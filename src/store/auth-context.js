@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
+// import { authActions } from './auth';
+import { useSelector } from 'react-redux';
 
 const AuthContext = React.createContext({
-    token: "",
-    isLoggedIn: false,
     profileLink: false,
     setProfileLink: () => {},
-    login: (token) => {},
-    logout: () => {},
     getProfileData: async () => {},
 });
 
 export const AuthContextProvider = ({ children }) => {
-    const initialState = localStorage.getItem("token");
-    const [token, setToken] = useState(initialState);
+    const token = useSelector(state => state.auth.token);
 
     const [profileLink, setProfileLink] = useState(false);
 
@@ -20,20 +17,8 @@ export const AuthContextProvider = ({ children }) => {
         setProfileLink(true);
     }
 
-
-    const loginHandler = (token) => {
-        setToken(token);
-        localStorage.setItem("token", token);
-    };
-
-    const logoutHandler = () => {
-        setToken(null);
-        localStorage.removeItem("token");
-    };
-
-    const userIsLoggedIn = !!token;
-
     const getUserProfileData = async () => {
+        // console.log("fetching data")
         try {
             const response = await fetch("https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyBEH8BPvQKDMeJQkL4qDU3zmtoSvKt297Q", {
                 method: 'POST',
@@ -46,6 +31,7 @@ export const AuthContextProvider = ({ children }) => {
             })
             if(response.ok) {
                 const data = await response.json();
+                // console.log("data")
                 // console.log(data);
                 return data;
             }
@@ -55,12 +41,8 @@ export const AuthContextProvider = ({ children }) => {
     };
 
     const contextValue = {
-        token: token,
-        isLoggedIn: userIsLoggedIn,
         profileLink: profileLink,
         setProfileLink: profileLinkHandler,
-        login: loginHandler,
-        logout: logoutHandler,
         getProfileData: getUserProfileData,
     }
 

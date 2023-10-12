@@ -44,8 +44,10 @@
 }
 .expenseList {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  /* text-align: left; */
   list-style-type: none;
   background: #8cebeb;
   margin-bottom: 1rem;
@@ -56,3 +58,89 @@
 /* .remove {
   background-color: rgba(187, 8, 8, 0.753);
 } */
+
+.expenseItem_date {
+  width: 10%;
+  /* border: 1px solid black; */
+}
+
+.expenseItem {
+  width: 20%;
+  box-sizing: border-box;
+  /* display: inline-block;  */
+  padding: 8px;
+  text-align: left;
+  /* border: 1px solid black; */
+}
+
+@media (max-width: 600px) {
+  .new-expense {
+    padding: 0.3rem;
+    margin-right: 0.5rem;
+    /* margin-left: 0.1rem; */
+  }
+  .expenseItem_date {
+    width: 20%;
+    /* text-align: center; */
+    /* border: 1px solid black; */
+  }
+  .expenseList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: -2rem;
+    /* width: 70vw; */
+    /* margin-bottom: 10px; */
+  }
+  .expenseItem {
+    width: 48%;
+    display: inline-flex;
+  }
+  .expenseItemButton {
+    display: flex;
+  }
+  .new-expense button {
+    font: inherit;
+    cursor: pointer;
+    padding: 0.5rem;
+    border: 0.5px solid white;
+    background: linear-gradient(to right, #3376b9, #0f8f8f);
+    color: white;
+    border-radius: 6px;
+    margin-right: 0.5rem;
+  }
+}
+
+  @media (max-width: 912px) {
+    .new-expense {
+      padding: 0.3rem;
+    }
+    .expenseItem_date {
+      width: 10%;
+      /* border: 1px solid black; */
+    }
+    .expenseList {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      /* margin-bottom: 10px; */
+    }
+    .expenseItem {
+      width: 20%;
+      box-sizing: border-box;
+      padding: 8px;
+      text-align: left;
+    }
+    .new-expense button {
+      font: inherit;
+      cursor: pointer;
+      padding: 0.5rem;
+      border: 0.5px solid white;
+      background: linear-gradient(to right, #3376b9, #0f8f8f);
+      color: white;
+      border-radius: 6px;
+      margin-right: 0.5rem;
+    }
+  }
+

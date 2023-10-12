@@ -2,9 +2,14 @@ import { useState, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
 import styles from "./Login.module.css";
 import AuthContext from "../../store/auth-context";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store/auth";
 
 const Login = () => {
   const history = useHistory();
+
+  const dispatch = useDispatch();
+  // const token = useSelector(state => state.auth.token);
 
   const [loginForm, setLoginForm] = useState({
     email: "",
@@ -86,9 +91,12 @@ const Login = () => {
         if (data.displayName && data.profilePicture) {
           authCtx.setProfileLink();
         }
-        authCtx.login(data.idToken);
+        // authCtx.login(data.idToken);
+        dispatch(authActions.login(data.idToken));
         // console.log("User has successfully signed up");
+        console.log("logged in");
         history.replace("/home");
+        console.log("home");
       } else {
         const data = await response.json();
         let errorMessage = "Authentication Failed";

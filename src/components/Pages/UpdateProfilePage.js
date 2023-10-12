@@ -3,9 +3,12 @@ import { useHistory } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 import AuthContext from "../../store/auth-context";
 import styles from "./UpdateProfilePage.module.css";
+import { useSelector } from "react-redux";
 
 const UpdateProfilePage = () => {
-  const { token, setProfileLink } = useContext(AuthContext);
+  const { setProfileLink } = useContext(AuthContext);
+
+  const token = useSelector(state => state.auth.token);
   const [profileData, setProfileData] = useState({
     fullname: "",
     photoURL: "",

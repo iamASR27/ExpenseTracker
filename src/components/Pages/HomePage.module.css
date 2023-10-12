@@ -1,5 +1,6 @@
 .home {
     padding: 1rem;
+    color: white;
 }
 
 .header {
@@ -9,10 +10,11 @@
 }
 
 .logout {
-    background-color: darkblue;
+    background-color: #0c345c;
     color: white;
     border-radius: 6px;
-    border: 0.5px solid rgb(52, 31, 184);
+    border: 0.5px solid white;
+    padding: 5px;
 }
 
 
@@ -20,27 +22,31 @@
     background-color: rgb(43, 43, 211);;
 }
 
-.verify {
+.verify, .profileButton, .expenses{
+    margin-top: 1rem;
+    color: whitesmoke;
+    /* background-color: darkblue; */
+    background-color: #0c345c;
+    border-radius: 4px;
+    padding: 0.5rem;
+    border: 0.5px solid white;
+}
+
+.verify:hover, .profileButton:hover, .expenses:hover, .logout:hover {
+    /* background-color: #26cccc; */
+    background: linear-gradient(to right, #3b8ddf, #119292);
+}
+
+/* .expenses {
     margin-top: 1rem;
     color: white;
     background-color: darkblue;
     border-radius: 4px;
-}
+} */
 
-.verify:hover {
-    background-color: rgb(43, 43, 211);;
-}
-
-.expenses {
-    margin-top: 1rem;
-    color: white;
-    background-color: darkblue;
-    border-radius: 4px;
-}
-
-.expenses:hover {
+/* .expenses:hover {
     background-color: rgb(43, 43, 211);
-}
+} */
 
 .home_buttons {
     display: flex;
