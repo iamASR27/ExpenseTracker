@@ -114,7 +114,7 @@ const NewExpense = () => {
             Activate Premium
           </button>
         )}
-        {premium && <button className={styles.download} onClick={downloadExpensesHandler}>Download Expenses</button>}
+        {premium && <button className={styles.download} onClick={downloadExpensesHandler}>Download file</button>}
         {premium && <button className={styles.dark} onClick={toggleDarkModeHandler}>Dark Mode</button>}
         <div className={styles["expenses-list"]}>
           <h3 style={{ color: "white", marginTop: "5px" }}>My Expenses</h3>
