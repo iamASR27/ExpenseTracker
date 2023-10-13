@@ -4,13 +4,28 @@ import { useHistory } from "react-router-dom";
 import styles from "./NewExpense.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { expenseActions } from "../../store/expense";
+import { themeActions } from "../../store/theme";
 
 const NewExpense = () => {
   const history = useHistory();
   // const [expenses, setExpenses] = useState([]);
   const dispatch = useDispatch();
   const expenses = useSelector((state) => state.expense.expenses);
+  const darkMode = useSelector((state) => state.theme.darkMode);
+  const premium = useSelector((state) => state.theme.premium);
   const [editedExpense, setEditedExpense] = useState(null);
+
+  const toggleDarkModeHandler = () => {
+    dispatch(themeActions.toggleDarkMode());
+  };
+
+  const activatePremiumHandler = () => {
+    dispatch(themeActions.togglePremium());
+  };
+
+  const downloadExpensesHandler = () => {
+    dispatch(expenseActions.downloadExpenses());
+  }
 
   const saveExpenseDataHandler = useCallback(async () => {
     console.log("fetch expenses");
@@ -34,13 +49,10 @@ const NewExpense = () => {
         });
       }
       // console.log(loadedExpenses);
-      // setExpenses(loadedExpenses);
       dispatch(expenseActions.setExpenses(loadedExpenses));
     } catch (error) {
       console.error("Error fetching expenses:", error.message);
     }
-
-    // setExpenses((prevExpenses) => [...prevExpenses, enteredExpenseData]);
   }, [dispatch]);
 
   useEffect(() => {
@@ -86,7 +98,9 @@ const NewExpense = () => {
   const totalExpenses = calculateTotalExpenses();
 
   return (
-    <div className={styles["new-expense"]}>
+    <div
+      className={darkMode ? styles["new-expense-dark"] : styles["new-expense"]}
+    >
       <>
         <ExpenseForm
           onSaveExpenseData={saveExpenseDataHandler}
@@ -96,18 +110,12 @@ const NewExpense = () => {
           onGoBack={goBackToHomeHandler}
         />
         {totalExpenses > 10000 && (
-          <button
-            style={{
-              background:
-                "linear-gradient(to right, rgb(165 145 38) 0%, rgb(221 194 50) 50%, rgb(165 145 38) 100%)",
-              marginTop: "5px",
-            }}
-            onMouseOver={(e) => e.target.style.background =  "linear-gradient(to right, rgb(183 157 16) 0%, rgb(199 171 23) 50%, rgb(195 164 2) 100%)"}
-            onMouseOut={(e) => e.target.style.background = "linear-gradient(to right, rgb(165 145 38) 0%, rgb(221 194 50) 50%, rgb(165 145 38) 100%)"}
-          >
+          <button className={styles.premium} onClick={activatePremiumHandler}>
             Activate Premium
           </button>
         )}
+        {premium && <button className={styles.download} onClick={downloadExpensesHandler}>Download Expenses</button>}
+        {premium && <button className={styles.dark} onClick={toggleDarkModeHandler}>Dark Mode</button>}
         <div className={styles["expenses-list"]}>
           <h3 style={{ color: "white", marginTop: "5px" }}>My Expenses</h3>
           {expenses.length === 0 ? (
@@ -131,10 +139,14 @@ const NewExpense = () => {
                     </div>
                     <div className={styles.expenseItemButton}>
                       <div>
-                        <button onClick={() => editExpenseHandler(expense)}>
+                        <button
+                          className={styles.edit}
+                          onClick={() => editExpenseHandler(expense)}
+                        >
                           Edit
                         </button>
                         <button
+                          className={styles.remove}
                           onClick={() => removeExpenseHandler(expense.id)}
                         >
                           Delete

@@ -11,6 +11,26 @@ const expenseSlice = createSlice({
       setExpenses (state, action) {
         state.expenses = action.payload;
       },
+
+      downloadExpenses (state) {
+        let csvContent = "date,category,description,amount\n";
+
+        state.expenses.forEach((expense) =>{
+          const row = `${expense.date},${expense.category},"${expense.description}",${expense.amount}\n`;
+          csvContent += row;
+        });
+
+        const blob = new Blob([csvContent]);
+        const url = window.URL.createObjectURL(blob);
+
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "expenses.csv";
+
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
     },
 });
 

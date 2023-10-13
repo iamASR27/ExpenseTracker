@@ -1,42 +1,94 @@
-.new-expense {
-  background: linear-gradient(to right, #2e3192, #1bffff);
+.new-expense-dark {
+  background: linear-gradient(to right, #222222, #111111);
   padding: 1rem;
-  /* margin: 2rem auto; */
   width: 100vw;
   height: 100vh;
-  /* max-width: 95%; */
-  /* border-radius: 12px; */
+  text-align: center;
+}
+
+.new-expense {
+  /* background: linear-gradient(to right, #2e3192, #1bffff); */
+  background: linear-gradient(to right, #399e9e, #2a9797, #1bffff);
+  padding: 1rem;
+  width: 100vw;
+  height: 100vh;
   text-align: center;
   /* box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25); */
 }
 
-.new-expense button {
+.premium {
+  background: linear-gradient(
+    to right,
+    rgb(165 145 38) 0%,
+    rgb(221 194 50) 50%,
+    rgb(165 145 38) 100%
+  );
+  margin-top: 10px;
+  margin-bottom: 10px;
   font: inherit;
   cursor: pointer;
   padding: 1rem 2rem;
   border: 0.5px solid white;
-  background: linear-gradient(to right, #3376b9, #0f8f8f);
   color: white;
   border-radius: 12px;
   margin-right: 1rem;
 }
 
-.new-expense button:hover,
-.new-expense button:active {
-  background: linear-gradient(to right, #3b8ddf, #26cccc);
-  /* border-color: #3b72e9; */
-  border-color: white;
+.premium:hover,
+.premium:active {
+  background: linear-gradient(
+    to right,
+    rgb(183 157 16) 0%,
+    rgb(199 171 23) 50%,
+    rgb(195 164 2) 100%
+  );
 }
 
-.new-expense button.alternative {
-  color: #220131;
-  border-color: transparent;
-  background-color: transparent;
+.download {
+  font: inherit;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  border: 0.5px solid white;
+  background: rgb(179, 14, 14);
+  color: white;
+  border-radius: 12px;
+  margin-right: 1rem;
 }
 
-.new-expense button.alternative:hover,
-.new-expense button.alternative:active {
-  background-color: #ddb3f8;
+.download:hover, .download:active {
+  background: red;
+}
+
+.edit, .remove {
+  font: inherit;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border: 0.5px solid white;
+  /* background: linear-gradient(to right, #3376b9, #0f8f8f); */
+  background-color: #0e7474;
+  color: white;
+  border-radius: 8px;
+  margin-right: 1rem;
+}
+
+.edit:hover, .edit:active,
+.remove:hover, .remove:active {
+  background-color: #2a9797;
+}
+
+.dark {
+  font: inherit;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  border: 0.5px solid white;
+  background: black;
+  color: white;
+  border-radius: 12px;
+  margin-right: 1rem;
+}
+
+.dark:hover, .dark:active {
+  background: rgba(43, 40, 40, 0.795);
 }
 
 .list {
@@ -100,47 +152,26 @@
   .expenseItemButton {
     display: flex;
   }
-  .new-expense button {
-    font: inherit;
-    cursor: pointer;
-    padding: 0.5rem;
-    border: 0.5px solid white;
-    background: linear-gradient(to right, #3376b9, #0f8f8f);
-    color: white;
-    border-radius: 6px;
-    margin-right: 0.5rem;
-  }
 }
 
-  @media (max-width: 912px) {
-    .new-expense {
-      padding: 0.3rem;
-    }
-    .expenseItem_date {
-      width: 10%;
-      /* border: 1px solid black; */
-    }
-    .expenseList {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      /* margin-bottom: 10px; */
-    }
-    .expenseItem {
-      width: 20%;
-      box-sizing: border-box;
-      padding: 8px;
-      text-align: left;
-    }
-    .new-expense button {
-      font: inherit;
-      cursor: pointer;
-      padding: 0.5rem;
-      border: 0.5px solid white;
-      background: linear-gradient(to right, #3376b9, #0f8f8f);
-      color: white;
-      border-radius: 6px;
-      margin-right: 0.5rem;
-    }
+@media (max-width: 912px) {
+  .new-expense {
+    padding: 0.3rem;
   }
-
+  .expenseItem_date {
+    width: 10%;
+    /* border: 1px solid black; */
+  }
+  .expenseList {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-bottom: 10px; */
+  }
+  .expenseItem {
+    width: 20%;
+    box-sizing: border-box;
+    padding: 8px;
+    text-align: left;
+  }
+}

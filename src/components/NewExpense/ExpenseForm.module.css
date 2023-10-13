@@ -38,6 +38,36 @@
   font-weight: 600;
 }
 
+.expense-submit button {
+  font: inherit;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  border: 0.5px solid white;
+  background: linear-gradient(to right, #3376b9, #0f8f8f);
+  color: white;
+  border-radius: 12px;
+  margin-right: 1rem;
+}
+
+.expense-submit button:hover,
+.expense-submit button:active {
+  background: linear-gradient(to right, #3b8ddf, #26cccc);
+  /* border-color: #3b72e9; */
+  border-color: white;
+}
+
+.expense-submit button.alternative {
+  color: #220131;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.expense-submit button.alternative:hover,
+.expense-submit button.alternative:active {
+  background-color: #ddb3f8;
+}
+
+
 @media (max-width: 600px) {
   .expense-form {
     display: flex;
@@ -58,5 +88,29 @@
     text-align: left;
     margin-left: 0.5rem;
     font-weight: 600;
+  }
+
+  .expense-submit button {
+    font: inherit;
+    cursor: pointer;
+    padding: 0.5rem;
+    border: 0.5px solid white;
+    background: linear-gradient(to right, #3376b9, #0f8f8f);
+    color: white;
+    border-radius: 6px;
+    margin-right: 0.5rem;
+  }
+}
+
+@media (max-width: 912px) {
+  .expense-submit button {
+    font: inherit;
+    cursor: pointer;
+    padding: 0.5rem;
+    border: 0.5px solid white;
+    background: linear-gradient(to right, #3376b9, #0f8f8f);
+    color: white;
+    border-radius: 6px;
+    margin-right: 0.5rem;
   }
 }
