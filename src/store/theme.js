@@ -9,11 +9,11 @@ const themeSlice = createSlice({
     reducers: {
         toggleDarkMode(state) {
             state.darkMode = !state.darkMode;
-            localStorage.setItem("darkMode", state.darkMode);
+            // localStorage.setItem("darkMode", state.darkMode);
         },
         togglePremium(state) {
             state.premium = !state.premium;
-            localStorage.setItem("premiumState", state.premium);
+            // localStorage.setItem("premiumState", state.premium);
         },
     }
 });

@@ -54,8 +54,8 @@ const Login = () => {
 
     if (!isLogin) {
       const confirmEnteredPassword = loginForm.confirmPassword;
-      console.log("Entered Password:", enteredPassword);
-      console.log("Confirmed Password:", confirmEnteredPassword);
+      // console.log("Entered Password:", enteredPassword);
+      // console.log("Confirmed Password:", confirmEnteredPassword);
 
       if (enteredPassword !== confirmEnteredPassword) {
         alert("Password and Confirm password do not match");
@@ -92,11 +92,11 @@ const Login = () => {
           authCtx.setProfileLink();
         }
         // authCtx.login(data.idToken);
-        dispatch(authActions.login(data.idToken));
-        // console.log("User has successfully signed up");
-        console.log("logged in");
+        dispatch(authActions.login({ token: data.idToken, userId: data.localId }));
+      
+        localStorage.setItem("token", data.idToken);
+        localStorage.setItem("userId", data.localId);
         history.replace("/home");
-        console.log("home");
       } else {
         const data = await response.json();
         let errorMessage = "Authentication Failed";

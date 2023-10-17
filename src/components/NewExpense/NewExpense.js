@@ -13,14 +13,17 @@ const NewExpense = () => {
   const expenses = useSelector((state) => state.expense.expenses);
   const darkMode = useSelector((state) => state.theme.darkMode);
   const premium = useSelector((state) => state.theme.premium);
+  const userId = useSelector((state) => state.auth.userId);
   const [editedExpense, setEditedExpense] = useState(null);
 
   const toggleDarkModeHandler = () => {
     dispatch(themeActions.toggleDarkMode());
+    localStorage.setItem("darkMode", darkMode);
   };
 
   const activatePremiumHandler = () => {
     dispatch(themeActions.togglePremium());
+    localStorage.setItem("premiumState", premium);
   };
 
   const downloadExpensesHandler = () => {
@@ -31,7 +34,7 @@ const NewExpense = () => {
     console.log("fetch expenses");
     try {
       const response = await fetch(
-        "https://expensetracker-1d4cf-default-rtdb.firebaseio.com/expensedata.json"
+        `https://expensetracker-1d4cf-default-rtdb.firebaseio.com/expensedata/${userId}.json`
       );
 
       if (!response.ok) {
@@ -53,7 +56,7 @@ const NewExpense = () => {
     } catch (error) {
       console.error("Error fetching expenses:", error.message);
     }
-  }, [dispatch]);
+  }, [dispatch, userId]);
 
   useEffect(() => {
     saveExpenseDataHandler();
@@ -66,7 +69,7 @@ const NewExpense = () => {
   const removeExpenseHandler = async (expenseId) => {
     try {
       const response = await fetch(
-        `https://expensetracker-1d4cf-default-rtdb.firebaseio.com/expensedata/${expenseId}.json`,
+        `https://expensetracker-1d4cf-default-rtdb.firebaseio.com/expensedata/${userId}/${expenseId}.json`,
         {
           method: "DELETE",
         }
@@ -128,6 +131,7 @@ const NewExpense = () => {
                     <div className={styles.expenseItem_date}>
                       <div>{expense.date}</div>
                     </div>
+                    <div className={styles.data}>
                     <div className={styles.expenseItem}>
                       <h4>{expense.category}</h4>
                     </div>
@@ -136,6 +140,7 @@ const NewExpense = () => {
                     </div>
                     <div className={styles.expenseItem}>
                       <div>Rs. {expense.amount}</div>
+                    </div>
                     </div>
                     <div className={styles.expenseItemButton}>
                       <div>

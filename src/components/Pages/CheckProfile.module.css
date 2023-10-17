@@ -5,6 +5,7 @@
     border-radius: 6px;
     padding: 1rem;
     max-height: 60rem;
+    background: rgba(255, 255, 255, 0.39);
 }
 
 .profile-data {
@@ -21,14 +22,15 @@
 }
 
 .update-button {
-    background-color: slateblue;
+    background-color: rgb(31, 87, 133);
     color: white;
     border-radius: 6px;
     border: 0.5px solid rgb(52, 31, 184);
     margin-top: 1rem;
+    margin-right: 1rem;
 }
 .update-button:hover {
-    background-color: rgb(20, 8, 94);
+    background-color: rgb(65, 135, 192);
 }
 
 @media (max-width: 768px) {

@@ -12,6 +12,10 @@ const CheckProfile = () => {
     history.replace("/updateProfile");
   };
 
+  const goToHomeHandler = () => {
+    history.replace("/home");
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -51,6 +55,9 @@ const CheckProfile = () => {
       <button className={styles["update-button"]} onClick={updateButtonHandler}>
         Update Profile
       </button>
+      <button className={styles["update-button"]} onClick={goToHomeHandler}>
+          Go back to homepage
+        </button>
     </div>
   );
 };

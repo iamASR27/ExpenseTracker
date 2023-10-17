@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./ExpenseForm.module.css";
+import { useSelector } from "react-redux";
 
 const ExpenseForm = (props) => {
   const [userInput, setUserInput] = useState({
@@ -8,6 +9,8 @@ const ExpenseForm = (props) => {
     date: "",
     category: "Food",
   });
+
+  const userId = useSelector((state) => state.auth.userId);
 
   useEffect(() => {
     if (props.editedExpense) {
@@ -51,7 +54,7 @@ const ExpenseForm = (props) => {
       let response;
       if(props.editedExpense){
         response = await fetch(
-          `https://expensetracker-1d4cf-default-rtdb.firebaseio.com/expensedata/${props.editedExpense.id}.json`,
+          `https://expensetracker-1d4cf-default-rtdb.firebaseio.com/expensedata/${userId}/${props.editedExpense.id}.json`,
           {
             method: "PUT",
             body: JSON.stringify(expenseData),
@@ -63,7 +66,7 @@ const ExpenseForm = (props) => {
         
       }else {
         response = await fetch(
-          "https://expensetracker-1d4cf-default-rtdb.firebaseio.com/expensedata.json",
+          `https://expensetracker-1d4cf-default-rtdb.firebaseio.com/expensedata/${userId}.json`,
           {
             method: "POST",
             body: JSON.stringify(expenseData),
@@ -82,9 +85,9 @@ const ExpenseForm = (props) => {
             : "Failed to add expense."
         );
       }
-      // const responseData = await response.json();
+      const responseData = await response.json();
       // const expenseIdFromFirebase = responseData.name;
-      // console.log(responseData);
+      console.log(responseData);
       props.onSaveChanges();
       props.onSaveExpenseData();
       console.log("add")

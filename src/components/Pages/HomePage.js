@@ -47,6 +47,7 @@ const HomePage = () => {
   }
 
   const verifyEmailHandler = async () => {
+    console.log("verify email");
     try {
       await fetch(
         "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyBEH8BPvQKDMeJQkL4qDU3zmtoSvKt297Q",
@@ -61,6 +62,7 @@ const HomePage = () => {
           },
         }
       );
+      console.log("verify email sent");
     } catch (error) {
       console.error("Error verifying email:", error.message);
     }
@@ -69,6 +71,10 @@ const HomePage = () => {
   const logoutButtonHandler = () => {
     // authCtx.logout();
     dispatch(authActions.logout());
+    localStorage.removeItem("token");
+    localStorage.removeItem("darkMode");
+    localStorage.removeItem("premiumState");
+    localStorage.removeItem("userId");
   }
 
   const manageExpenseHandler = () => {

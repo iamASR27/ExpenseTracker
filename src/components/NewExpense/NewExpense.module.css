@@ -1,18 +1,20 @@
 .new-expense-dark {
   background: linear-gradient(to right, #222222, #111111);
   padding: 1rem;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   text-align: center;
+  /* margin-bottom: 2rem; */
 }
 
 .new-expense {
   /* background: linear-gradient(to right, #2e3192, #1bffff); */
   background: linear-gradient(to right, #399e9e, #2a9797, #1bffff);
   padding: 1rem;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   text-align: center;
+  /* margin-bottom: 1rem; */
   /* box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25); */
 }
 
@@ -107,22 +109,43 @@
   padding: 0.5rem;
 }
 
+.data {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-basis: 70vw;
+  /* border: 1px solid black; */
+}
+
 /* .remove {
   background-color: rgba(187, 8, 8, 0.753);
 } */
 
 .expenseItem_date {
   width: 10%;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 500;
+  /* text-align: left; */
+  margin-left: 0.5rem;
   /* border: 1px solid black; */
 }
 
 .expenseItem {
   width: 20%;
   box-sizing: border-box;
-  /* display: inline-block;  */
   padding: 8px;
   text-align: left;
   /* border: 1px solid black; */
+}
+
+.expenseItem h4 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 500;
+  padding-top: 8px;
+}
+
+.expenseItem div {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 @media (max-width: 600px) {
@@ -133,21 +156,25 @@
   }
   .expenseItem_date {
     width: 20%;
-    /* text-align: center; */
+    margin-left: -0.2rem;
     /* border: 1px solid black; */
   }
   .expenseList {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: flex-start;
     margin-left: -2rem;
+    width: 95vw;
     /* width: 70vw; */
     /* margin-bottom: 10px; */
   }
   .expenseItem {
     width: 48%;
-    display: inline-flex;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
   }
   .expenseItemButton {
     display: flex;
@@ -166,7 +193,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* margin-bottom: 10px; */
+    /* margin-bottom: 1rem; */
   }
   .expenseItem {
     width: 20%;
@@ -174,4 +201,30 @@
     padding: 8px;
     text-align: left;
   }
+}
+
+@media (max-width: 300px) {
+  .expenseList {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    
+  }
+
+  .expenseItem_date {
+    margin-left: -2rem;
+    /* border: 1px solid black; */
+  }
+
+  /* .edit, .remove {
+    font: inherit;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    border: 0.5px solid white;
+    background-color: #0e7474;
+    color: white;
+    border-radius: 6px;
+    margin-right: 0.5rem;
+  } */
 }
