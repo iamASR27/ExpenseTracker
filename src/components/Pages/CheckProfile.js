@@ -44,7 +44,7 @@ const CheckProfile = () => {
 
   return (
     <div className={styles["profile-container"]}>
-      <div className={styles["profile-data"]}>
+      <div className={styles["profile-data"]} data-testid="profile-data-container" >
         <div>
           <b>Your Name:</b> {displayName}
         </div>
