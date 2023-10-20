@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import Login from '../components/Login/Login';
 import { Provider } from 'react-redux';
 import store from '../store/index';
@@ -50,16 +50,20 @@ describe("Login component", () => {
         expect(emailInput).toHaveAttribute('type', 'email');
     });
 
-    test("renders forgot pasword after clicking login with existing account", async () => {
+    test("renders forgot pasword after clicking login with existing account", () => {
         render(<Provider store={store}><Login /></Provider>)
       
         const loginExistingAccountElement = screen.getByText("Login with existing account");
-        expect(loginExistingAccountElement).toBeInTheDocument();
+        // expect(loginExistingAccountElement).toBeInTheDocument();
         // userEvent.click(loginExistingAccountElement);
+        fireEvent.click(loginExistingAccountElement);
 
-        // await waitFor(() => {
-        //     const forgotPasswordLink = screen.getByText("Forgot Password");
-        //     expect(forgotPasswordLink).toBeInTheDocument();
-        // })
+       
+        // const forgotPasswordLink = await screen.findByText("Forgot Password?");
+        const forgotPasswordLink = screen.getByText("Forgot Password?")
+        // const forgotPasswordLink = await screen.findByRole('link', { name: /Forgot Password/i, href: '/forgot-password' });
+
+        expect(forgotPasswordLink).toBeInTheDocument();
+    
     })
 })
