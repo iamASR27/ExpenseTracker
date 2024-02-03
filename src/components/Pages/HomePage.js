@@ -71,10 +71,11 @@ const HomePage = () => {
   const logoutButtonHandler = () => {
     // authCtx.logout();
     dispatch(authActions.logout());
-    localStorage.removeItem("token");
-    localStorage.removeItem("darkMode");
-    localStorage.removeItem("premiumState");
-    localStorage.removeItem("userId");
+    // localStorage.removeItem("token");
+    // localStorage.removeItem("darkMode");
+    // localStorage.removeItem("premiumState");
+    // localStorage.removeItem("userId");
+    localStorage.clear();
   }
 
   const manageExpenseHandler = () => {

@@ -156,14 +156,14 @@ const Login = () => {
         )}
          {isLogin && (
           <div className={styles.actions}>
-            <Link to="/forgot-password">Forgot Password?</Link>
+            <Link to="/forgot-password" role="link">Forgot Password?</Link>
           </div>
         )}
         <div className={styles.actions}>
           {!isLoading && (
             <button>{isLogin ? "Login" : "Create Account"}</button>
           )}
-          {isLoading && <p>Sending request....</p>}
+          {isLoading && <p style={{color: "black"}}>Sending request....</p>}
           <button
             type="button"
             className={styles.toggle}

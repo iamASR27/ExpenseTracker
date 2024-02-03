@@ -3,7 +3,8 @@
     width: 95%;
     max-width: 25rem;
     border-radius: 6px;
-    background-color: rgba(255, 255, 255, 0.70);
+    /* background-color: rgba(255, 255, 255, 0.70); */
+    background-color: rgba(255, 255, 255);
     /* background: transparent; */
     /* background: linear-gradient(to right, #2e3192, #1bffff); */
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
@@ -56,6 +57,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .actions a:hover {
+    color: #082b50;
   }
   
   .actions button {
